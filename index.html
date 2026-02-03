@@ -1,13 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+
     <title>Patient Vital Monitoring</title>
+    <script src="https://kit.fontawesome.com/96e37b53f1.js" crossorigin="anonymous"></script>
 </head>
 <body>
+     <div class = "container2"> 
+        <div class = "containertext">  Responders Dashboard</div>
+
+        </div>
+
      <div>
-        hello
+         
+            <nav>
+                <ul class="navlinks">
+                     <li><a href="home.html">Home </a> </li> 
+                    <li> <a href="Monitoring.html">Start Monitoring </a> </li>
+                    <li> <a href="Devicestats.html">Device Status </a> </li>
+                     <li> <a href="profile.html">Profile </a> </li>
+                     
+
+                      
+
+                </ul>
+                <li class ="logout"> <a href="Logout.html">Logout </a> </li>
+            </nav>
+
      </div>
+
+    <div class="container">
+       
+
+     <div id="heartrate">  Heart Rate</div>
+     
+        <div> <i class="fa-solid fa-heart"></i>  </div>
+            <div class="bpm-card">
+                    <svg class="progress-ring" width="150" height="150">
+                        <circle class="ring-bg" cx="75" cy="75" r="70"/>
+                        <circle class="ring-progress" cx="75" cy="75" r="70"/>
+                    </svg>
+                        <div class="bpm-text">
+                        <span id="bpm">82</span> BPM
+                 </div>
+        </div>
+
+    </div>
+ 
 </body>
+<button class="menu-btn" onclick="toggleSidebar()">
+    ☰
+</button>
+
+ <script src="script.js"></script>
 </html>

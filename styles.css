@@ -1,0 +1,188 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html, body{
+width:100%;
+height:100%;
+font-family:Arial;
+background:#e3e5e8;
+overflow:hidden;
+}
+
+/* TOPBAR */
+.topbar{
+position:fixed;
+top:0;
+left:230px;
+width:calc(100% - 230px);
+padding:18px;
+background:white;
+box-shadow:0 2px 12px rgba(0,0,0,.08);
+text-align:center;
+z-index:900;
+}
+
+/* SIDEBAR */
+#sidebar{
+position:fixed;
+top:0;
+left:0;
+width:230px;
+height:100vh;
+background:linear-gradient(180deg,#dd4c56,#c93c46);
+padding-top:80px;
+z-index:1000;
+}
+
+#sidebar ul{
+list-style:none;
+padding:15px;
+}
+
+#sidebar a{
+display:flex;
+gap:10px;
+color:white;
+text-decoration:none;
+padding:14px;
+border-radius:10px;
+}
+
+#sidebar a:hover{
+background:rgba(255,255,255,.2);
+}
+
+/* MAIN */
+.container{
+position:absolute;
+top:80px;
+left:230px;
+width:calc(100% - 230px);
+height:calc(100vh - 80px);
+display:flex;
+justify-content:center;
+align-items:center;
+padding:30px;
+}
+
+/* CARD */
+.monitor-card{
+background:#d1d3d6;
+width:100%;
+max-width:520px;
+padding:40px;
+border-radius:25px;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:20px;
+box-shadow:0 20px 40px rgba(0,0,0,.12);
+}
+
+/* HEART */
+.medical-heart{
+width:80px;
+height:80px;
+animation:beat 1s infinite;
+}
+
+@keyframes beat{
+0%{transform:scale(1);}
+50%{transform:scale(1.15);}
+100%{transform:scale(1);}
+}
+
+/* RESPONSIVE RING */
+.progress-ring{
+width:40vw;
+max-width:180px;
+aspect-ratio:1;
+transform:rotate(-90deg);
+transition:stroke .5s ease;
+}
+
+.ring-progress{
+fill:none;
+stroke-width:10;
+stroke-linecap:round;
+transition:stroke-dashoffset .6s ease, stroke .5s ease;
+}
+
+.ring-bg{
+stroke:#eee;
+stroke-width:10;
+fill:none;
+}
+
+.bpm-text{
+font-size:22px;
+font-weight:bold;
+}
+
+/* MOBILE */
+.bottom-nav{
+display:none;
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+height:60px;
+background:white;
+box-shadow:0 -3px 15px rgba(0,0,0,.08);
+justify-content:space-around;
+align-items:center;
+z-index:1200;
+}
+
+.bottom-item{
+display:flex;
+flex-direction:column;
+align-items:center;
+text-decoration:none;
+color:#555;
+font-size:13px;
+}
+
+.bottom-item i{
+font-size:20px;
+margin-bottom:4px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+
+#sidebar{
+display:none;
+}
+
+.topbar{
+left:0;
+width:100%;
+}
+
+.container{
+left:0;
+width:100%;
+height:calc(100vh - 140px);
+padding:20px;
+}
+
+.monitor-card{
+width:95%;
+max-width:none;
+padding:35px 25px;
+}
+
+.progress-ring{
+width:60%;
+max-width:160px;
+}
+
+.bottom-nav{
+display:flex;
+}
+
+}

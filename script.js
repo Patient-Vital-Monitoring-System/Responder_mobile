@@ -1,44 +1,69 @@
-const bpmCircle = document.querySelector('.ring-progress');
-const bpmText = document.getElementById('bpm');
+const patientName = document.getElementById("patientName");
+const bpText = document.getElementById("bpValue");
+const hrText = document.getElementById("hrValue");
+const o2Text = document.getElementById("o2Value");
+const timeText = document.getElementById("timeValue");
+const carousel = document.getElementById("patientCarousel");
 
-if(bpmCircle){
+const ring = document.getElementById("bpRing");
+const circumference = 440;
 
-const radius = bpmCircle.r.baseVal.value;
-const circumference = 2 * Math.PI * radius;
+let patients = [];
+let index = 0;
 
-bpmCircle.style.strokeDasharray = circumference;
-bpmCircle.style.strokeDashoffset = circumference;
+function showPatient(){
 
-function setBPM(bpm){
+    if(patients.length === 0) return;
 
-bpmText.textContent = bpm;
+    let p = patients[index];
 
-/* Color logic */
-let color = "#2ecc71";
+    patientName.innerText = p.pat_name;
 
-if(bpm > 120){
-color = "#e74c3c";
+    bpText.innerText = p.bp_systolic + "/" + p.bp_diastolic;
+    hrText.innerText = p.heart_rate;
+    o2Text.innerText = p.oxygen_level;
+
+    let date = new Date(p.recorded_at);
+    timeText.innerText = date.toLocaleString();
+
+    let percent = Math.min(p.bp_systolic / 180,1);
+    ring.style.strokeDashoffset = circumference * (1-percent);
+
+    if(p.bp_systolic >= 140) ring.style.stroke="#ef4444";
+    else if(p.bp_systolic >= 120) ring.style.stroke="#f59e0b";
+    else ring.style.stroke="#22c55e";
+
+    Array.from(carousel.children).forEach((c,i)=>
+        c.classList.toggle("active",i===index)
+    );
+
+    index++;
+    if(index >= patients.length) index = 0;
 }
-else if(bpm > 90){
-color = "#f1c40f";
+
+function loadPatients(){
+
+    fetch("Responder_mobile/api/bp_live.php")
+    .then(res=>res.json())
+    .then(data=>{
+
+        patients = data;
+
+        carousel.innerHTML = "";
+
+        patients.forEach((p,i)=>{
+            let div = document.createElement("div");
+            div.innerText = p.pat_name;
+            carousel.appendChild(div);
+        });
+
+        if(patients.length > 0){
+            showPatient();
+            setInterval(showPatient,3000);
+        }
+
+    });
+
 }
 
-bpmCircle.style.stroke = color;
-
-/* Progress movement */
-const percent = Math.min(bpm / 200,1);
-const offset = circumference * (1 - percent);
-
-bpmCircle.style.strokeDashoffset = offset;
-
-}
-
-/* Simulated data */
-let currentBPM = 60;
-
-setInterval(()=>{
-currentBPM = Math.floor(60 + Math.random()*100);
-setBPM(currentBPM);
-},2000);
-
-}
+loadPatients();

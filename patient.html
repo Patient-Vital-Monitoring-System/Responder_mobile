@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Patients</title>
+</head>
+
+<body>
+
+<h2>Patient List</h2>
+
+<table border="1">
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Birthdate</th>
+<th>Contact</th>
+</tr>
+</thead>
+
+<tbody id="patientTable"></tbody>
+</table>
+
+<script>
+fetch("api/patient.php")
+.then(res => res.json())
+.then(data => {
+
+    let rows = "";
+
+    data.forEach(p=>{
+        rows += `
+        <tr>
+        <td>${p.pat_id}</td>
+        <td>${p.pat_name}</td>
+        <td>${p.birthdate}</td>
+        <td>${p.contact_number}</td>
+        </tr>
+        `;
+    });
+
+    document.getElementById("patientTable").innerHTML = rows;
+
+});
+</script>
+
+</body>
+</html>

@@ -1,5 +1,5 @@
 <?php 
-include("Responder_mobile/api/config.php");
+include("api/config.php");
 $dbStatus = isset($conn) && !$conn->connect_error;
 session_start();
 ?>
@@ -30,9 +30,9 @@ Responder Medical Monitoring
 <nav id="sidebar">
 
 <a href="index.php"><i class="fa fa-gauge"></i> Dashboard</a>
-<a href="Responder_mobile/api/incident.php"><i class="fa fa-triangle-exclamation"></i> Incident</a>
-<a href="Responder_mobile/api/vital_live.php"><i class="fa fa-heart-pulse"></i> Vitals</a>
-<a href="Responder_mobile/api/history.php"><i class="fa fa-clock-rotate-left"></i> History</a>
+<a href="api/incident.php"><i class="fa fa-triangle-exclamation"></i> Incident</a>
+<a href="api/vital_live.php"><i class="fa fa-heart-pulse"></i> Vitals</a>
+<a href="api/history.php"><i class="fa fa-clock-rotate-left"></i> History</a>
 <a href="login.html"><i class="fa fa-right-from-bracket"></i> Logout</a>
 
 
@@ -99,17 +99,17 @@ r="70"/>
 <span>Home</span>
 </a>
 
-<a href="Responder_mobile/api/incident.php" class="bottom-item">
+<a href="api/incident.php" class="bottom-item">
 <i class="fa fa-triangle-exclamation"></i>
 <span>Incident</span>
 </a>
 
-<a href="Responder_mobile/api/vital_live.php" class="bottom-item">
+<a href="api/vital_live.php" class="bottom-item">
 <i class="fa fa-heart-pulse"></i>
 <span>Vitals</span>
 </a>
 
-<a href="Responder_mobile/api/history.php" class="bottom-item">
+<a href="api/history.php" class="bottom-item">
 <i class="fa fa-clock-rotate-left"></i>
 <span>History</span>
 </a>
@@ -173,7 +173,7 @@ if(index>=patients.length) index=0;
 
 function loadPatients(){
 
-fetch("Responder_mobile/api/bp_live.php")
+fetch("api/bp_live.php")
 .then(r=>r.json())
 .then(data=>{
 

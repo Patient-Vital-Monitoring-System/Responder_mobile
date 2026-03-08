@@ -81,7 +81,7 @@ let formData = new FormData();
 formData.append("email",email);
 formData.append("password",password);
 
-fetch("Responder_mobile/api/login_responder.php",{
+fetch("api/login_responder.php",{
 method:"POST",
 body:formData
 })
